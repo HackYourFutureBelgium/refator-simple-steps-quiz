@@ -1,4 +1,4 @@
-const app = {
+export const app = {
   state: {
     numCorrect: 0,
     userAnswers: [],
@@ -99,7 +99,11 @@ const app = {
 
   },
 
-  init: function (containerId) {
+  init: function (containerId, submitId) {
+
+    document.getElementById(submitId)
+      .addEventListener('click', this.showResultsHandler.bind(this));
+
     const quizContainer = document.getElementById(containerId);
 
     // finally combine our output list into one string of html and put it on the page

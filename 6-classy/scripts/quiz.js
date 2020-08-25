@@ -1,31 +1,16 @@
-const app = {
-  state: {
+export class Quiz {
+  state = {
     numCorrect: 0,
     userAnswers: [],
-    questions: [
-      {
-        question: "What is 10/2?",
-        answers: {
-          a: '3',
-          b: '5',
-          c: '115'
-        },
-        correctAnswer: 'b'
-      },
-      {
-        question: "What is 30/3?",
-        answers: {
-          a: '3',
-          b: '5',
-          c: '10'
-        },
-        correctAnswer: 'c'
-      }
-    ]
-  },
+    questions: []
+  }
+
+  constructor(questions) {
+    this.state.questions = [...questions];
+  }
 
 
-  renderQuestions: function () {
+  renderQuestions() {
     const questions = this.state.questions;
 
     const output = [];
@@ -57,10 +42,9 @@ const app = {
 
     // finally combine our output list into one string of html and put it on the page
     return output.join('');
-  },
+  }
 
-
-  showResultsHandler: function () {
+  showResultsHandler() {
 
     // gather answer containers from our quiz
     const quizContainer = document.getElementById('quiz');
@@ -97,13 +81,16 @@ const app = {
     const resultsContainer = document.getElementById('results');
     resultsContainer.innerHTML = this.state.numCorrect + ' out of ' + this.state.questions.length;
 
-  },
+  }
 
-  init: function (containerId) {
+  init(containerId, submitId) {
+
+    document.getElementById(submitId)
+      .addEventListener('click', this.showResultsHandler.bind(this));
+
     const quizContainer = document.getElementById(containerId);
 
     // finally combine our output list into one string of html and put it on the page
     quizContainer.innerHTML = this.renderQuestions();
-
   }
 };

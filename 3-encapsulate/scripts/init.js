@@ -1,1 +1,1 @@
-window.onload = () => app.init();
+window.onload = () => app.init('quiz', 'submit');

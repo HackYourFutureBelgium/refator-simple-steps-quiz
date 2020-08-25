@@ -1,4 +1,4 @@
-const app = {
+export const app = {
   state: {
     numCorrect: 0,
     userAnswers: [],
@@ -100,6 +100,7 @@ const app = {
   },
 
   init: function (containerId) {
+
     const quizContainer = document.getElementById(containerId);
 
     // finally combine our output list into one string of html and put it on the page
